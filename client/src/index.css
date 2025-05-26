@@ -1,5 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-Prata: "Prata", serif;
+  --font-Outfit: "Outfit", sans-serif;
+  --color-darkGray: #414141;
+}
+
+* {
+  @apply font-Outfit;
+}
 
 a.active hr {
   @apply block;
+}
+
+.prata-regular {
+  @apply font-Prata font-normal;
 }
