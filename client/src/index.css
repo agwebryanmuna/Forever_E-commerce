@@ -19,3 +19,10 @@ a.active hr {
 .prata-regular {
   @apply font-Prata font-normal;
 }
+
+@media (max-width: 640px) {
+  a.active {
+    background-color: black;
+    color: white;
+  }
+}
