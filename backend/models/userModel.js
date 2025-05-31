@@ -12,6 +12,6 @@ const userSchema = new Schema(
   { minimize: false }
 ); // mongoose ignores {}, so we add minimize:false so the user is created with an empty({}) cart object
 
-const User = model("user", userSchema);
+const User = model.users || model("user", userSchema);
 
 export default User;
