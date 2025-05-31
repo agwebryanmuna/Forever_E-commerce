@@ -13,6 +13,6 @@ const productSchema = new Schema({
   date: { type: Number, required: true },
 });
 
-const Product = model("product", productSchema);
+const Product = model.products || model("product", productSchema);
 
 export default Product;
