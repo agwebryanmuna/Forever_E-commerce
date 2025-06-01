@@ -10,12 +10,10 @@ import Sidebar from "./components/Admin/Sidebar";
 import { useState } from "react";
 import Login from "./components/Admin/Login";
 import { useEffect } from "react";
-import { createContext } from "react";
 import AuthContext from "./context/AuthContext";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
-export const authToken = createContext(null);
+export const currency = "$";
 
 export const Dashboard = () => {
   const getToken = localStorage.getItem("token");
