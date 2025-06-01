@@ -16,6 +16,11 @@ a.active hr {
   @apply block;
 }
 
+.admin_tab.active {
+  background-color: #ffebf5;
+  border-color: #c586a5;
+}
+
 .prata-regular {
   @apply font-Prata font-normal;
 }
