@@ -2,6 +2,9 @@ import { createContext, useState } from "react";
 import { products } from "../assets/assets";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import { backendUrl } from "../App";
+import { useEffect } from "react";
 
 export const ShopContext = createContext(null);
 
@@ -12,6 +15,7 @@ const ShopContextProvider = ({ children }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setcartItems] = useState({});
   const navigate = useNavigate();
+  const [productsFromDb, setProductsFromDb] = useState([]);
 
   const addToCart = async (itemId, size) => {
     if (!size) {
@@ -67,8 +71,26 @@ const ShopContextProvider = ({ children }) => {
     return totalAmount;
   };
 
+  const getProductsData = async () => {
+    try {
+      const res = await axios.get(backendUrl + "/api/product/list");
+      if (res.data.success) {
+        setProductsFromDb(res.data.products);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getProductsData();
+  }, []);
+
   const value = {
-    products,
+    products: productsFromDb.length < 15 ? products : productsFromDb,
     currency,
     deliveryFee,
     search,
