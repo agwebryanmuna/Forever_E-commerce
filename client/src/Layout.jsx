@@ -10,12 +10,16 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
+import List from "./pages/admin/List";
+import AdminOrders from "./pages/admin/AdminOrders";
 
 const Layout = () => {
   return (
     <Routes>
       <Route path="/admin" element={<Dashboard />}>
         <Route index element={<Add />} />
+        <Route path="/admin/list" element={<List />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
       </Route>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
