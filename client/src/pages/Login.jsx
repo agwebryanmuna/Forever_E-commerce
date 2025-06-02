@@ -1,11 +1,64 @@
+import { useContext } from "react";
 import { useState } from "react";
+import { ShopContext } from "../context/ShopContext";
+import axios from "axios";
+import { backendUrl } from "../App";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const Login = () => {
+  const { token, setToken, navigate } = useContext(ShopContext);
+
   const [currentState, setCurrentState] = useState("Sign Up");
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [isProcessiing, setIsProcessing] = useState(false);
+
   const onSubmitHandler = async (e) => {
-    e.target.preventDefault();
+    e.preventDefault();
+    setIsProcessing(true);
+    try {
+      if (currentState === "Sign Up") {
+        const res = await axios.post(backendUrl + "/api/user/register", {
+          name,
+          email,
+          password,
+        });
+        if (res.data.success === true) {
+          setToken(res.data.token);
+          localStorage.setItem("token", res.data.token);
+        } else {
+          toast.error(res.data.message);
+        }
+        setIsProcessing(false);
+      } else {
+        const res = await axios.post(backendUrl + "/api/user/login", {
+          email,
+          password,
+        });
+        if (res.data.success === true) {
+          setToken(res.data.token);
+          localStorage.setItem("token", res.data.token);
+        } else {
+          toast.error(res.data.message);
+        }
+        setIsProcessing(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+      setIsProcessing(false);
+    }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   return (
     <form
@@ -18,6 +71,9 @@ const Login = () => {
       </div>
       {currentState === "Sign Up" && (
         <input
+          disabled={isProcessiing}
+          onChange={(e) => setName(e.target.value)}
+          value={name}
           type="text"
           className="w-full px-3 py-2 border border-gray-800"
           placeholder="Name"
@@ -25,12 +81,18 @@ const Login = () => {
         />
       )}
       <input
+        disabled={isProcessiing}
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
         type="email"
         className="w-full px-3 py-2 border border-gray-800"
         placeholder="Email"
         required
       />
       <input
+        disabled={isProcessiing}
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
         type="password"
         className="w-full px-3 py-2 border border-gray-800"
         placeholder="Password"
@@ -54,7 +116,12 @@ const Login = () => {
           </p>
         )}
       </div>
-      <button className="bg-black text-white font-light px-8 py-2 mt-4">
+      <button
+        disabled={isProcessiing}
+        className={`bg-black text-white font-light px-8 py-2 mt-4 ${
+          isProcessiing && "cursor-not-allowed"
+        }`}
+      >
         {currentState === "Login" ? "Sign In" : "Sign Up"}
       </button>
     </form>

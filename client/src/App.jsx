@@ -17,7 +17,7 @@ export const currency = "$";
 
 export const Dashboard = () => {
   const getToken = localStorage.getItem("token");
-  const [token, setToken] = useState(getToken ? getToken : "");
+  const [adminToken, setAdminToken] = useState(getToken ? getToken : "");
 
   useEffect(() => {
     localStorage.setItem("token", token);
@@ -27,15 +27,15 @@ export const Dashboard = () => {
     <div className="bg-gray-50 min-h-screen">
       <ToastContainer />
       {token === "" ? (
-        <Login setToken={setToken} />
+        <Login setAdminToken={setAdminToken} />
       ) : (
         <>
-          <AdminNavbar setToken={setToken} />
+          <AdminNavbar setAdminToken={setAdminToken} />
           <hr />
           <div className="flex w-full">
             <Sidebar />
             <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
-              <AuthContext.Provider value={token}>
+              <AuthContext.Provider value={adminToken}>
                 <Outlet />
               </AuthContext.Provider>
             </div>
