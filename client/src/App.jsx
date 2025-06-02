@@ -16,17 +16,17 @@ export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const currency = "$";
 
 export const Dashboard = () => {
-  const getToken = localStorage.getItem("token");
+  const getToken = localStorage.getItem("adminToken");
   const [adminToken, setAdminToken] = useState(getToken ? getToken : "");
 
   useEffect(() => {
-    localStorage.setItem("token", token);
-  }, [token]);
+    localStorage.setItem("adminToken", adminToken);
+  }, [adminToken]);
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <ToastContainer />
-      {token === "" ? (
+      {adminToken === "" ? (
         <Login setAdminToken={setAdminToken} />
       ) : (
         <>

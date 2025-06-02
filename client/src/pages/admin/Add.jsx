@@ -15,7 +15,7 @@ const Add = () => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState("100");
   const [category, setCategory] = useState("Men");
   const [subCategory, setSubCategory] = useState("Topwear");
   const [bestseller, setBestseller] = useState(false);
@@ -50,9 +50,7 @@ const Add = () => {
 
       if (res.data.success === true) {
         toast.success(res.data.message);
-        setName("");
-        setDescription("");
-        setPrice("");
+
         setImage1("");
         setImage2("");
         setImage3("");
