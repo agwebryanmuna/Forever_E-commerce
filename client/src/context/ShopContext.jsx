@@ -16,6 +16,9 @@ const ShopContextProvider = ({ children }) => {
   const [cartItems, setcartItems] = useState({});
   const navigate = useNavigate();
   const [productsFromDb, setProductsFromDb] = useState([]);
+  const [token, setToken] = useState(
+    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  );
 
   const addToCart = async (itemId, size) => {
     if (!size) {
@@ -103,6 +106,9 @@ const ShopContextProvider = ({ children }) => {
     updateQuantity,
     getCartAmount,
     navigate,
+    token,
+    setToken,
+    setcartItems,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
