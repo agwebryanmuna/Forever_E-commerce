@@ -1,5 +1,7 @@
 # Forever (E-commerce)
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-View%20Site-brightgreen?style=for-the-badge)](https://forever-e-commerce-eight.vercel.app/)
+
 Forever is a modern, full-stack e-commerce web application built with the MERN stack (MongoDB, Express.js, React, Node.js) and designed for a seamless shopping experience. This project demonstrates best practices in web development, scalable architecture, and a beautiful, responsive UI—perfect for your portfolio or as a foundation for a real-world online store.
 
 ---
@@ -73,7 +75,7 @@ Forever is a modern, full-stack e-commerce web application built with the MERN s
 - **Authentication:** JWT
 - **File Uploads:** Multer, Cloudinary
 - **Payments:** Stripe, Razorpay
-- **Deployment:** (Ready for Vercel/Netlify & Render/Railway)
+- **Deployment:** Vercel (Frontend), Render (Backend)
 
 ---
 
