@@ -17,18 +17,15 @@ const List = () => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
 
   const removeProduct = async (productId) => {
     try {
-      console.log(productId);
       const res = await axios.delete(`${backendUrl}/api/product/${productId}`, {
         headers: { token },
       });
-      console.log(res);
       if (res.data.success) {
         toast.success(res.data.message);
         await fetchList();
@@ -36,7 +33,6 @@ const List = () => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
