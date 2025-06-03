@@ -47,7 +47,6 @@ const ShopContextProvider = ({ children }) => {
         { headers: { token } }
       );
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
@@ -78,7 +77,6 @@ const ShopContextProvider = ({ children }) => {
           { headers: { token } }
         );
       } catch (error) {
-        console.log(error);
         toast.error(error.message);
       }
     }
@@ -107,7 +105,6 @@ const ShopContextProvider = ({ children }) => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
@@ -125,7 +122,6 @@ const ShopContextProvider = ({ children }) => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };

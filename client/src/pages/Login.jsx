@@ -48,7 +48,6 @@ const Login = () => {
         setIsProcessing(false);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
       setIsProcessing(false);
     }

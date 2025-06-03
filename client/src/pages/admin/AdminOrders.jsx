@@ -25,7 +25,6 @@ const AdminOrders = () => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(res.data.message);
     }
   };
@@ -41,7 +40,6 @@ const AdminOrders = () => {
         await fetchAllOrders();
       }
     } catch (error) {
-      console.log(error);
       toast.error(res.data.message);
     }
   };

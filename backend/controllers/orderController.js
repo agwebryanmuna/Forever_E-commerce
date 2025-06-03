@@ -22,7 +22,6 @@ const placeOrder = async (req, res) => {
 
     res.json({ success: true, message: "Order placed" });
   } catch (error) {
-    console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
@@ -39,7 +38,6 @@ const allOrders = async (req, res) => {
     const orders = await Order.find({});
     res.json({ success: true, orders });
   } catch (error) {
-    console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
@@ -53,7 +51,6 @@ const userOrders = async (req, res) => {
 
     res.json({ success: true, orders });
   } catch (error) {
-    console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
@@ -66,7 +63,6 @@ const updateStatus = async (req, res) => {
     await Order.findByIdAndUpdate(orderId, { status });
     res.json({ success: true, message: "Status updated." });
   } catch (error) {
-    console.log(error);
     res.json({ success: false, message: error.message });
   }
 };

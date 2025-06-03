@@ -61,7 +61,6 @@ const Add = () => {
         setIsAdding(false);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
       setIsAdding(false);
     }
