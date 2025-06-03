@@ -110,6 +110,7 @@ const ShopContextProvider = ({ children }) => {
   };
 
   const getUserCart = async () => {
+    if (!token) return null;
     try {
       const res = await axios.post(
         backendUrl + "/api/cart/get",
