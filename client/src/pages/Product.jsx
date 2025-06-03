@@ -3,10 +3,11 @@ import { useParams } from "react-router";
 import { ShopContext } from "../context/ShopContext.jsx";
 import { assets } from "../assets/assets.js";
 import RelatedProducts from "../components/RelatedProducts.jsx";
+import { toast } from "react-toastify";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart } = useContext(ShopContext);
+  const { products, currency, addToCart, token } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
@@ -82,7 +83,11 @@ const Product = () => {
             </div>
           </div>
           <button
-            onClick={() => addToCart(productData._id, size)}
+            onClick={() => {
+              token
+                ? addToCart(productData._id, size)
+                : toast.error("You have to login first.");
+            }}
             className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
           >
             ADD TO CART
