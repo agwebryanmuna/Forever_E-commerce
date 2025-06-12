@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import logger from "./logger/logger.js";
 
 // App config
 const app = express();
@@ -28,6 +29,7 @@ app.get("/", (_, res) => {
   res.send("API working 😊");
 });
 
-app.listen(port, () =>
-  console.log(`Server running on http://localhost:${port}`)
-);
+app.listen(port, () => {
+  logger.info(`Server started on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
+});
