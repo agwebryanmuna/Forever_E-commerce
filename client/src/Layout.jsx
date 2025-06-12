@@ -12,6 +12,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
 import List from "./pages/admin/List";
 import AdminOrders from "./pages/admin/AdminOrders";
+import NotFound from "./pages/NotFound";
 
 const Layout = () => {
   return (
@@ -32,6 +33,7 @@ const Layout = () => {
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/orders" element={<Orders />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
