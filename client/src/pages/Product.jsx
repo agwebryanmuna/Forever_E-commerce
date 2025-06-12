@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { Suspense, lazy, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { ShopContext } from "../context/ShopContext.jsx";
 import { assets } from "../assets/assets.js";
-import RelatedProducts from "../components/RelatedProducts.jsx";
 import { toast } from "react-toastify";
+import Spinner from "../components/Spinner.jsx";
+
+const RelatedProducts = lazy(() => import("../components/RelatedProducts.jsx"));
 
 const Product = () => {
   const { productId } = useParams();
@@ -122,10 +124,12 @@ const Product = () => {
         </div>
       </div>
       {/* display related products */}
-      <RelatedProducts
-        category={productData.category}
-        subCategory={productData.subCategory}
-      />
+      <Suspense fallback={<Spinner />}>
+        <RelatedProducts
+          category={productData.category}
+          subCategory={productData.subCategory}
+        />
+      </Suspense>
     </div>
   ) : (
     <div className="">Product not found</div>
