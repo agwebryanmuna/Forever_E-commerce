@@ -1,6 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import Product from "../models/productModel.js";
 import mongoose from "mongoose";
+import logger from "../logger/logger.js";
 
 // ----------- add product
 const addProduct = async (req, res) => {
@@ -52,6 +53,7 @@ const addProduct = async (req, res) => {
 
     res.json({ success: true, message: "Product added" });
   } catch (error) {
+    logger.error(`Add product error: ${error.message}`);
     res.json({ success: false, error: error.message });
   }
 };
@@ -82,6 +84,7 @@ const removeProduct = async (req, res) => {
 
     res.json({ success: true, message: "Product removed" });
   } catch (error) {
+    logger.error(`Remove product error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };
@@ -101,6 +104,7 @@ const singleProduct = async (req, res) => {
 
     res.json({ success: true, product });
   } catch (error) {
+    logger.error(`Get single product error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };

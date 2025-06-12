@@ -1,4 +1,5 @@
 import User from "../models/userModel.js";
+import logger from "../logger/logger.js";
 
 // --------- Add products to user cart
 const addToCart = async (req, res) => {
@@ -42,6 +43,7 @@ const updateCart = async (req, res) => {
 
     res.json({ success: true, message: "Cart updated" });
   } catch (error) {
+    logger.error(`Update cart error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };
@@ -57,6 +59,7 @@ const getUserCaart = async (req, res) => {
 
     res.json({ success: true, cartData });
   } catch (error) {
+    logger.error(`Get user cart error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };

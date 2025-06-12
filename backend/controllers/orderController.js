@@ -1,3 +1,4 @@
+import logger from "../logger/logger.js";
 import Order from "../models/orderModel.js";
 import User from "../models/userModel.js";
 
@@ -16,12 +17,14 @@ const placeOrder = async (req, res) => {
       date: Date.now(),
     };
 
-    await Order.create(orderData);
+    const order = await Order.create(orderData);
 
-    await User.findByIdAndUpdate(userId, { cardData: {} });
+    await User.findByIdAndUpdate(userId, { cartData: {} });
 
     res.json({ success: true, message: "Order placed" });
+    logger.info(`Order created: ${order._id}`, { userId, orderData });
   } catch (error) {
+    logger.error(`Place order error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };
@@ -38,6 +41,7 @@ const allOrders = async (req, res) => {
     const orders = await Order.find({});
     res.json({ success: true, orders });
   } catch (error) {
+    logger.error(`All orders error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };
@@ -51,6 +55,7 @@ const userOrders = async (req, res) => {
 
     res.json({ success: true, orders });
   } catch (error) {
+    logger.error(`User orders error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };
@@ -62,7 +67,9 @@ const updateStatus = async (req, res) => {
 
     await Order.findByIdAndUpdate(orderId, { status });
     res.json({ success: true, message: "Status updated." });
+    logger.info(`Order status updated: ${orderId}`, { status });
   } catch (error) {
+    logger.error(`Update order status error: ${error.message}`);
     res.json({ success: false, message: error.message });
   }
 };

@@ -2,6 +2,7 @@ import validator from "validator";
 import bcript from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
+import logger from "../logger/logger.js";
 
 const createToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET);
 
@@ -27,6 +28,7 @@ const loginUser = async (req, res) => {
     const token = createToken(user._id);
     res.json({ success: true, token });
   } catch (error) {
+    logger.error(`Login error: ${error.message}`);
     res.json({ success: false, error: error.message });
   }
 };
@@ -74,7 +76,9 @@ const registerUser = async (req, res) => {
     const token = createToken(newUser._id);
 
     res.json({ success: true, token });
+    logger.info(`User registered: ${newUser._id}`, { email });
   } catch (error) {
+    logger.error(`Registration error: ${error.message}`);
     res.json({ success: false, error: error.message });
   }
 };
