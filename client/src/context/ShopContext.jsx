@@ -19,6 +19,7 @@ const ShopContextProvider = ({ children }) => {
   const [token, setToken] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
+  const [isFetching, setIsFetching] = useState(false);
 
   const addToCart = async (itemId, size) => {
     if (!size) {
@@ -97,15 +98,19 @@ const ShopContextProvider = ({ children }) => {
   };
 
   const getProductsData = async () => {
+    setIsFetching(true);
     try {
       const res = await axios.get(backendUrl + "/api/product/list");
       if (res.data.success) {
         setProducts(res.data.products);
+        setIsFetching(false);
       } else {
         toast.error(res.data.message);
+        setIsFetching(false);
       }
     } catch (error) {
       toast.error(error.message);
+      setIsFetching(false);
     }
   };
 
@@ -152,6 +157,7 @@ const ShopContextProvider = ({ children }) => {
     token,
     setToken,
     setcartItems,
+    isFetching,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
