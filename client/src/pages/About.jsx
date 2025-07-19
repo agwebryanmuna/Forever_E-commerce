@@ -1,4 +1,3 @@
-import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import NewsLetterBox from "../components/NewsLetterBox";
 
@@ -10,7 +9,7 @@ const About = () => {
       </div>
       <div className="my-10 flex flex-col md:flex-row gap-16">
         <img
-          src={assets.about_img}
+          src={'https://res.cloudinary.com/dx4rloqv5/image/upload/v1752895361/about_img_ixnju5.png'}
           alt=""
           className="w-full md:max-w-[450px]"
         />

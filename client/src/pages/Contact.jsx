@@ -1,4 +1,3 @@
-import { assets } from "../assets/assets";
 import NewsLetterBox from "../components/NewsLetterBox";
 import Title from "../components/Title";
 
@@ -10,7 +9,7 @@ const Contact = () => {
       </div>
       <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28">
         <img
-          src={assets.contact_img}
+          src={'https://res.cloudinary.com/dx4rloqv5/image/upload/v1752895442/contact_img_lzhfji.png'}
           alt=""
           className="w-full md:max-w-[480px]"
         />
