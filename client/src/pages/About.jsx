@@ -12,6 +12,7 @@ const About = () => {
           src={'https://res.cloudinary.com/dx4rloqv5/image/upload/v1752895361/about_img_ixnju5.png'}
           alt=""
           className="w-full md:max-w-[450px]"
+          loading={'lazy'}
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
           <p>

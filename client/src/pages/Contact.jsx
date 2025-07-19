@@ -12,6 +12,7 @@ const Contact = () => {
           src={'https://res.cloudinary.com/dx4rloqv5/image/upload/v1752895442/contact_img_lzhfji.png'}
           alt=""
           className="w-full md:max-w-[480px]"
+          loading={'lazy'}
         />
         <div className="flex flex-col justify-center items-start gap-6">
           <p className="font-semibold text-xl text-gray-600">Our Store</p>
