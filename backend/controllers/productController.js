@@ -31,6 +31,7 @@ const addProduct = async (req, res) => {
     let imagesUrl = await Promise.all(
       images.map(async (image) => {
         let result = await cloudinary.uploader.upload(image.path, {
+          folder: "forever-ecommerce",
           resource_type: "image",
         });
         return result.secure_url;
@@ -43,7 +44,7 @@ const addProduct = async (req, res) => {
       category,
       price: Number(price),
       subCategory,
-      bestseller: bestseller === "true" ? true : false,
+      bestseller: bestseller === "true",
       sizes: JSON.parse(sizes),
       image: imagesUrl,
       date: Date.now(),
