@@ -1,5 +1,6 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import {Link} from "react-router";
 
 const Footer = () => {
   return (
@@ -35,7 +36,7 @@ const Footer = () => {
       <div>
         <hr />
         <p className="py-5 text-sm text-center">
-          Copyright 2025&copy; forever.com - All Right Reserved
+          <Link to={'/admin'} className={'cursor-none'}>Copyright</Link> 2025&copy; forever.com - All Right Reserved
         </p>
       </div>
     </div>
